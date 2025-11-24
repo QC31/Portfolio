@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="assets/images/terminal.png" type="image/icon type">
+    <title>Portfolio - Quentin Charron</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #00ff88;
+            --secondary: #0a192f;
+            --dark: #020c1b;
+            --light: #8892b0;
+            --white: #ccd6f6;
+            --shadow: rgba(0, 255, 136, 0.1);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--secondary);
+            color: var(--white);
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: rgba(10, 25, 47, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: var(--white);
+            text-decoration: none;
+            transition: color 0.3s;
+            font-size: 0.95rem;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            color: var(--white);
+            margin-bottom: 0.5rem;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .hero-content h2 {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            animation: fadeInUp 0.8s ease 0.2s backwards;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            color: var(--light);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            animation: fadeInUp 0.8s ease 0.4s backwards;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background-color: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            text-decoration: none;
+            border-radius: 5px;
+            transition: all 0.3s;
+            animation: fadeInUp 0.8s ease 0.6s backwards;
+        }
+
+        .cta-button:hover {
+            background-color: var(--shadow);
+            transform: translateY(-3px);
+        }
+
+        /* Sections */
+        section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        section h2 {
+            font-size: 2.5rem;
+            color: var(--white);
+            margin-bottom: 3rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(to right, var(--primary), transparent);
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-text p {
+            color: var(--light);
+            margin-bottom: 1rem;
+        }
+
+        .about-highlights {
+            background-color: var(--dark);
+            padding: 2rem;
+            border-radius: 10px;
+            border-left: 4px solid var(--primary);
+        }
+
+        .about-highlights ul {
+            list-style: none;
+        }
+
+        .about-highlights li {
+            padding: 0.5rem 0;
+            color: var(--light);
+        }
+
+        .about-highlights li::before {
+            content: '▹ ';
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-category {
+            background-color: var(--dark);
+            padding: 2rem;
+            border-radius: 10px;
+            transition: transform 0.3s;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px var(--shadow);
+        }
+
+        .skill-category h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .skill-category ul {
+            list-style: none;
+        }
+
+        .skill-category li {
+            color: var(--light);
+            padding: 0.3rem 0;
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background-color: var(--dark);
+            padding: 2rem;
+            border-radius: 10px;
+            transition: all 0.3s;
+            border: 1px solid transparent;
+        }
+
+        .project-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px var(--shadow);
+        }
+
+        .project-card h3 {
+            color: var(--white);
+            margin-bottom: 1rem;
+        }
+
+        .project-card p {
+            color: var(--light);
+            margin-bottom: 1rem;
+        }
+
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .tech-tag {
+            background-color: var(--secondary);
+            color: var(--primary);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+        }
+
+        .report-btn {
+            display: inline-block;
+            margin-top: 1.5rem;
+            padding: 0.6rem 1.2rem;
+            background-color: var(--primary);
+            color: var(--secondary);
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .report-btn:hover {
+            background-color: transparent;
+            color: var(--primary);
+            box-shadow: inset 0 0 0 2px var(--primary);
+        }
+
+        /* Contact Section */
+        .contact-content {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-content p {
+            color: var(--light);
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            background-color: var(--dark);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+
+        .contact-link:hover {
+            background-color: var(--primary);
+            color: var(--secondary);
+            transform: translateY(-3px);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            text-align: center;
+            padding: 2rem;
+            color: var(--light);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-content h2 {
+                font-size: 1.5rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            nav ul {
+                gap: 1rem;
+            }
+
+            section {
+                padding: 3rem 1rem;
+            }
+        }
+
+        /* Terminal Effect */
+        .terminal {
+            background-color: #1e1e1e;
+            padding: 1rem;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            color: var(--primary);
+            margin: 2rem 0;
+        }
+
+        .terminal::before {
+            content: '> ';
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li><a href="#accueil">Accueil</a></li>
+            <li><a href="#apropos">À propos</a></li>
+            <li><a href="#competences">Compétences</a></li>
+            <li><a href="#projets">Projets</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="accueil" class="hero">
+        <div class="hero-content">
+            <h1>Quentin Charron</h1>
+            <h2>Administrateur Systèmes & Réseaux</h2>
+            <p>Étudiant passionné par l'infrastructure IT et la sécurité des systèmes</p>
+            <div class="terminal">Bienvenue dans mon portfolio !</div>
+            <a href="#projets" class="cta-button">Découvrir mes projets</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="apropos">
+        <h2>À propos</h2>
+        <div class="about-content">
+            <div class="about-text">
+                <p>Étudiant en Mastère 1 ERIS (Expert Réseaux Infrastructures et Sécurité) à l'ORT Toulouse, je suis passionné par l'informatique depuis toujours. Mes domaines de prédilection : les réseaux, les systèmes et la cybersécurité.</p>
+                <p>Curieux de nature et un peu bidouilleur sur les bords, j'aime comprendre comment les choses fonctionnent et trouver des solutions. La méthodologie, j'y travaille — mais la curiosité, elle, ne manque jamais.</p>
+                <p>En dehors des écrans, vous me trouverez probablement à la salle de Crossfit, manettes en main ou casque sur les oreilles.</p>
+            </div>
+            <div class="about-highlights">
+                <h3 style="color: var(--primary); margin-bottom: 1rem;">Points forts</h3>
+                <ul>
+                    <li>Curieux</li>
+                    <li>Autodidacte</li>
+                    <li>Autonome</li>
+                    <li>Persévérant</li>
+                    <li>Rigoureux</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="competences">
+        <h2>Compétences</h2>
+        <div class="skills-grid">
+            <div class="skill-category">
+                <h3>🖥️ Systèmes</h3>
+                <ul>
+                    <li>Linux (Debian, Ubuntu, Kali)</li>
+                    <li>Windows Server</li>
+                    <li>VMware / Proxmox / Nutanix</li>
+                    <li>Docker</li>
+                    <li>Active Directory et gestion des droits</li>
+                </ul>
+            </div>
+            <div class="skill-category">
+                <h3>🌐 Réseaux</h3>
+                <ul>
+                    <li>TCP/IP, DNS, DHCP</li>
+                    <li>Routage & Switching</li>
+                    <li>VPN & Pare-feu</li>
+                    <li>VLAN</li>
+                    <li>Wireshark</li>
+                </ul>
+            </div>
+            <div class="skill-category">
+                <h3>⚙️ Automatisation</h3>
+                <ul>
+                    <li>Bash / PowerShell</li>
+                    <li>Python</li>
+                    <li>Git / GitLab</li>
+                </ul>
+            </div>
+            <div class="skill-category">
+                <h3>🔒 Sécurité</h3>
+                <ul>
+                    <li>SSL/TLS</li>
+                    <li>Gestion des accès</li>
+                    <li>Sauvegardes</li>
+                    <li>Monitoring</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projets">
+        <h2>Projets</h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <h3>Accès distant sécurisé</h3>
+                <p>Mise en place d'une solution d'accès distant sécurisé pour permettre aux utilisateurs de se connecter au réseau interne à distance.</p>
+                <div class="tech-tags">
+                    <span class="tech-tag">Linux</span>
+                    <span class="tech-tag">OpenVPN</span>
+                </div>
+                <a href="https://drive.google.com/file/d/1YmOqNxXhkrvvXscuKuuUAKLsSEmZic9t/view?usp=drive_link" target="_blank" class="report-btn">📄 Voir le rapport</a>
+            </div>
+            <div class="project-card">
+                <h3>GLPI</h3>
+                <p>Mise en place d'une solution GLPI complète : inventaire automatique du parc, gestion des tickets d'incidents et suivi des demandes utilisateurs.</p>
+                <div class="tech-tags">
+                    <span class="tech-tag">Linux</span>
+                    <span class="tech-tag">GLPI</span>
+                    <span class="tech-tag">PHP</span>
+                    <span class="tech-tag">MariaDB</span>
+                </div>
+                <a href="https://drive.google.com/file/d/1-1tdEzTDGv0zQBYnUOHu4DH_Gj0EACGa/view?usp=sharing" target="_blank" class="report-btn">📄 Voir le rapport</a>
+            </div>
+            <div class="project-card">
+                <h3>Nextcloud</h3>
+                <p>Mise en place d'une solution Nextcloud auto-hébergée : stockage sécurisé, synchronisation des fichiers et travail collaboratif.</p>
+                <div class="tech-tags">
+                    <span class="tech-tag">Nextcloud</span>
+                    <span class="tech-tag">Linux</span>
+                </div>
+                <a href="https://drive.google.com/file/d/1XheROiXYeN1Y8LlgA2RJ7tCZRHetb-_Q/view?usp=sharing" target="_blank" class="report-btn">📄 Voir le rapport</a>
+            </div>
+            <div class="project-card">
+                <h3>SIEM - Wazuh</h3>
+                <p>Installation d'une stack SIEM Wazuh : collecte des logs, analyse des événements de sécurité, alerting et conformité.</p>
+                <div class="tech-tags">
+                    <span class="tech-tag">Wazuh</span>
+                    <span class="tech-tag">Linux</span>
+                    <span class="tech-tag">Logs</span>
+                </div>
+                <a href="https://drive.google.com/file/d/19EL--a4lSn3fcrwnZqCxCp9vWr5xkDGo/view?usp=sharing" target="_blank" class="report-btn">📄 Voir le rapport</a>
+            </div>
+            <div class="project-card">
+                <h3>Proxmox</h3>
+                <p>Mise en place d'un serveur de virtualisation Proxmox pour héberger et gérer des machines virtuelles.</p>
+                <div class="tech-tags">
+                    <span class="tech-tag">Proxmox</span>
+                    <span class="tech-tag">VM</span>
+                    <span class="tech-tag">Container</span>
+                </div>
+                <a href="https://drive.google.com/file/d/1IpPsECnXvaKrGGz6YwkGWevhb7Dpnns6/view?usp=sharing" target="_blank" class="report-btn">📄 Voir le rapport</a>
+            </div>
+            <div class="project-card">
+                <h3>Déploiement - WDS</h3>
+                <p>Mise en place d'un serveur WDS pour automatiser le déploiement d'images Windows sur un parc de machines.</p>
+                <div class="tech-tags">
+                    <span class="tech-tag">Windows</span>
+                    <span class="tech-tag">WDS</span>
+                    <span class="tech-tag">PXE</span>
+                </div>
+                <a href="https://drive.google.com/file/d/13zFwNYMLK2tt8attuoujzOkDhPXe6xbN/view?usp=sharing" target="_blank" class="report-btn">📄 Voir le rapport</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2>Contact</h2>
+        <div class="contact-content">
+            <p>Intéressé par mon profil ? N'hésitez pas à me contacter pour échanger sur des opportunités de stage, d'alternance ou simplement pour discuter tech !</p>
+            <div class="contact-links">
+                <a href="mailto:quentin.charron.pro@gmail.com" class="contact-link">
+                    📧 Email
+                </a>
+                <a href="https://www.linkedin.com/in/quentin-charron-b97999260/" target="_blank" class="contact-link">
+                    💼 LinkedIn
+                </a>
+                <a href="https://github.com/QC31" target="_blank" class="contact-link">
+                    💻 GitHub
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; Claude a codé, j'ai adapté, la musique a supervisé 🎵🤖 </p>
+    </footer>
+
+    <script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Navbar background on scroll
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 100) {
+                nav.style.backgroundColor = 'rgba(10, 25, 47, 0.98)';
+            } else {
+                nav.style.backgroundColor = 'rgba(10, 25, 47, 0.95)';
+            }
+        });
+
+        // Animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.skill-category, .project-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'all 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
