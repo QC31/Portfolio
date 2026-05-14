@@ -215,6 +215,8 @@
             border-radius: 10px;
             transition: all 0.3s;
             border: 1px solid transparent;
+            display: flex;
+            flex-direction: column;
         }
 
         .project-card:hover {
@@ -233,6 +235,10 @@
             margin-bottom: 1rem;
         }
 
+        .project-card .tech-tags {
+            margin-top: auto;  /* Pousse les tags vers le bas disponible */
+        }
+
         .tech-tags {
             display: flex;
             flex-wrap: wrap;
@@ -249,7 +255,7 @@
         }
 
         .report-btn {
-            display: inline-block;
+            display: block;                    /* Changé de inline-block à block */
             margin-top: 1.5rem;
             padding: 0.6rem 1.2rem;
             background-color: var(--primary);
@@ -258,6 +264,7 @@
             border-radius: 5px;
             font-weight: bold;
             transition: all 0.3s;
+            text-align: center;                /* Centre le texte */
         }
 
         .report-btn:hover {
@@ -360,7 +367,142 @@
         .terminal::before {
             content: '> ';
         }
+
+/* CV Section */
+        .cv-content {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .cv-content p {
+            color: var(--light);
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        .cv-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .cv-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .view-btn {
+            background-color: var(--dark);
+            color: var(--white);
+            border: 2px solid var(--primary);
+        }
+
+        .view-btn:hover {
+            background-color: var(--primary);
+            color: var(--secondary);
+            transform: translateY(-3px);
+        }
+
+        .download-btn {
+            background-color: var(--primary);
+            color: var(--secondary);
+        }
+
+        .download-btn:hover {
+            background-color: transparent;
+            color: var(--primary);
+            box-shadow: inset 0 0 0 2px var(--primary);
+        }
+
+/* Certifications Section */
+        .certifications-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .certification-card {
+            background-color: var(--dark);
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            transition: all 0.3s;
+            border: 1px solid transparent;
+            position: relative;
+        }
+
+        .certification-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px var(--shadow);
+        }
+
+        .cert-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .certification-card h3 {
+            color: var(--white);
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .cert-org {
+            color: var(--primary);
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .cert-date {
+            color: var(--light);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .cert-link {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.5rem 1rem;
+            background-color: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            text-decoration: none;
+            border-radius: 5px;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+        }
+
+        .cert-link:hover {
+            background-color: var(--primary);
+            color: var(--secondary);
+        }
+
+        .cert-badge {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.5rem 1rem;
+            background-color: var(--primary);
+            color: var(--secondary);
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: bold;
+        }
+
+        .certification-card.in-progress {
+            opacity: 0.8;
+            border: 1px dashed var(--light);
+        }
     </style>
+
 </head>
 <body>
     <!-- Navigation -->
@@ -369,7 +511,9 @@
             <li><a href="#accueil">Accueil</a></li>
             <li><a href="#apropos">À propos</a></li>
             <li><a href="#competences">Compétences</a></li>
+            <li><a href="#certifications">Certifications</a></li>
             <li><a href="#projets">Projets</a></li>
+            <li><a href="#cv">CV</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
     </nav>
@@ -377,11 +521,10 @@
     <!-- Hero Section -->
     <section id="accueil" class="hero">
         <div class="hero-content">
-            <h1>Quentin Charron</h1>
-            <h2>Administrateur Systèmes & Réseaux</h2>
-            <p>Étudiant passionné par l'infrastructure IT et la sécurité des systèmes</p>
+            <h2>Quentin Charron</h2>
+            <h1>Administrateur Systèmes & Réseaux</h1>
+            <p>Passionné par l'infrastructure IT et la sécurité des systèmes.</p>
             <div class="terminal">Bienvenue dans mon portfolio !</div>
-            <a href="#projets" class="cta-button">Découvrir mes projets</a>
         </div>
     </section>
 
@@ -390,18 +533,21 @@
         <h2>À propos</h2>
         <div class="about-content">
             <div class="about-text">
-                <p>Étudiant en Mastère 1 ERIS (Expert Réseaux Infrastructures et Sécurité) à l'ORT Toulouse, je suis passionné par l'informatique depuis toujours. Mes domaines de prédilection : les réseaux, les systèmes et la cybersécurité.</p>
-                <p>Curieux de nature et un peu bidouilleur sur les bords, j'aime comprendre comment les choses fonctionnent et trouver des solutions. La méthodologie, j'y travaille — mais la curiosité, elle, ne manque jamais.</p>
+                <p>🎓 Diplômé du Bachelor CSI (Concepteur Systèmes d'Informations) à l'ORT Toulouse, passionné par l'informatique depuis toujours. Mes domaines de prédilection : les réseaux, les systèmes et la cybersécurité.</p>
+                <p>Curieux de nature et un peu bidouilleur sur les bords, j'aime comprendre comment les choses fonctionnent et trouver des solutions.</p>
+                <p>🔍 Statut : Recherche active d'emploi</p>
+                <p>📅 Disponible : Immédiatement ou alternance sept. 2026</p>
                 <p>En dehors des écrans, vous me trouverez probablement à la salle de Crossfit, manettes en main ou casque sur les oreilles.</p>
             </div>
             <div class="about-highlights">
                 <h3 style="color: var(--primary); margin-bottom: 1rem;">Points forts</h3>
                 <ul>
-                    <li>Curieux</li>
-                    <li>Autodidacte</li>
                     <li>Autonome</li>
+                    <li>Autodidacte</li>
                     <li>Persévérant</li>
                     <li>Rigoureux</li>
+                    <li>Patient</li>
+                    <li>Ponctuel</li>
                 </ul>
             </div>
         </div>
@@ -414,40 +560,90 @@
             <div class="skill-category">
                 <h3>🖥️ Systèmes</h3>
                 <ul>
-                    <li>Linux (Debian, Ubuntu, Kali)</li>
                     <li>Windows Server</li>
-                    <li>VMware / Proxmox / Nutanix</li>
-                    <li>Docker</li>
-                    <li>Active Directory et gestion des droits</li>
+                    <li>Linux</li>
+                    <li>Active Directory</li>
+                    <li>Virtualisation</li>
+                    <li>Supervision</li>
+                    <li>Sauvegarde</li>
+                    <li>Déploiement</li>
                 </ul>
             </div>
             <div class="skill-category">
                 <h3>🌐 Réseaux</h3>
                 <ul>
-                    <li>TCP/IP, DNS, DHCP</li>
-                    <li>Routage & Switching</li>
-                    <li>VPN & Pare-feu</li>
-                    <li>VLAN</li>
-                    <li>Wireshark</li>
+                    <li>TCP/IP</li>
+                    <li>Routage</li>
+                    <li>Switching</li>
+                    <li>Firewall</li>
+                    <li>Proxy</li>
+                    <li>VLANs</li>
+                    <li>VPN</li>
                 </ul>
             </div>
             <div class="skill-category">
-                <h3>⚙️ Automatisation</h3>
+                <h3>⚙️ Scripting</h3>
                 <ul>
-                    <li>Bash / PowerShell</li>
+                    <li>PowerShell</li>
                     <li>Python</li>
-                    <li>Git / GitLab</li>
+                    <li>Batch</li>
+                    <li>Bash</li>
+                    <li>Git</li>
                 </ul>
             </div>
             <div class="skill-category">
-                <h3>🔒 Sécurité</h3>
+                <h3>🔒 Cybersécurité</h3>
                 <ul>
-                    <li>SSL/TLS</li>
-                    <li>Gestion des accès</li>
-                    <li>Sauvegardes</li>
-                    <li>Monitoring</li>
+                    <li>OSINT</li>
+                    <li>Kali Linux</li>
+                    <li>EDR</li>
+                    <li>SIEM</li>
+                    <li>Syslog</li>
                 </ul>
             </div>
+        </div>
+    </section>
+
+<!-- Certifications Section -->
+    <section id="certifications">
+        <h2>Certifications</h2>
+        <div class="certifications-grid">
+            
+            <!-- Exemple de certification -->
+            <div class="certification-card">
+                <div class="cert-icon">📜</div>
+                <h3>Présentation des réseaux</h3>
+                <p class="cert-org">Cisco</p>
+                <p class="cert-date">21/09/2025</p>
+                <a href="https://drive.google.com/file/d/1bRWdN5KuQ65-Pd5nWRguPDa_plmMzhjT/view?usp=drive_link" target="_blank" class="cert-link">Voir la certification</a>
+            </div>
+
+            <!-- Autre exemple -->
+            <div class="certification-card">
+                <div class="cert-icon">📜</div>
+                <h3>Introduction à la cybersécurité</h3>
+                <p class="cert-org">Cisco</p>
+                <p class="cert-date">29/03/2025</p>
+                <a href="https://drive.google.com/file/d/129uAonNZE1o2g14OwczFL34WS89pesiS/view?usp=drive_link" target="_blank" class="cert-link">Voir la certification</a>
+            </div>
+
+            <!-- Autre exemple -->
+            <div class="certification-card">
+                <div class="cert-icon">📜</div>
+                <h3>MOOC - ANSSI</h3>
+                <p class="cert-org">SecNumacadémie</p>
+                <p class="cert-date">15/09/2025</p>
+                <a href="https://drive.google.com/file/d/11nn9cgHOP4P0VuKO5cu6TXcOu1AZ3P40/view?usp=drive_link" target="_blank" class="cert-link">Voir la certification</a>
+            </div>
+
+            <div class="certification-card">
+                <div class="cert-icon">📝</div>
+                <h3>Permis de l'OSINT</h3>
+                <p class="cert-org">Oscar Zulu</p>
+                <p class="cert-date">05/05/2026</p>
+                <a href="https://drive.google.com/file/d/1jfovVM67ziFuPaJwwnuX_nbFUyV6Mpp7/view?usp=drive_link" target="_blank" class="cert-link">Voir la certification</a>
+            </div>
+
         </div>
     </section>
 
@@ -462,7 +658,7 @@
                     <span class="tech-tag">Linux</span>
                     <span class="tech-tag">OpenVPN</span>
                 </div>
-                <a href="https://drive.google.com/file/d/1YmOqNxXhkrvvXscuKuuUAKLsSEmZic9t/view?usp=drive_link" target="_blank" class="report-btn">📄 Voir le rapport</a>
+                <a href="https://drive.google.com/file/d/1YmOqNxXhkrvvXscuKuuUAKLsSEmZic9t/view?usp=drive_link" target="_blank" class="report-btn">Voir le rapport</a>
             </div>
             <div class="project-card">
                 <h3>GLPI</h3>
@@ -473,7 +669,7 @@
                     <span class="tech-tag">PHP</span>
                     <span class="tech-tag">MariaDB</span>
                 </div>
-                <a href="https://drive.google.com/file/d/1-1tdEzTDGv0zQBYnUOHu4DH_Gj0EACGa/view?usp=sharing" target="_blank" class="report-btn">📄 Voir le rapport</a>
+                <a href="https://drive.google.com/file/d/1-1tdEzTDGv0zQBYnUOHu4DH_Gj0EACGa/view?usp=sharing" target="_blank" class="report-btn">Voir le rapport</a>
             </div>
             <div class="project-card">
                 <h3>Nextcloud</h3>
@@ -482,7 +678,7 @@
                     <span class="tech-tag">Nextcloud</span>
                     <span class="tech-tag">Linux</span>
                 </div>
-                <a href="https://drive.google.com/file/d/1XheROiXYeN1Y8LlgA2RJ7tCZRHetb-_Q/view?usp=sharing" target="_blank" class="report-btn">📄 Voir le rapport</a>
+                <a href="https://drive.google.com/file/d/1XheROiXYeN1Y8LlgA2RJ7tCZRHetb-_Q/view?usp=sharing" target="_blank" class="report-btn">Voir le rapport</a>
             </div>
             <div class="project-card">
                 <h3>SIEM - Wazuh</h3>
@@ -492,7 +688,7 @@
                     <span class="tech-tag">Linux</span>
                     <span class="tech-tag">Logs</span>
                 </div>
-                <a href="https://drive.google.com/file/d/19EL--a4lSn3fcrwnZqCxCp9vWr5xkDGo/view?usp=sharing" target="_blank" class="report-btn">📄 Voir le rapport</a>
+                <a href="https://drive.google.com/file/d/19EL--a4lSn3fcrwnZqCxCp9vWr5xkDGo/view?usp=sharing" target="_blank" class="report-btn">Voir le rapport</a>
             </div>
             <div class="project-card">
                 <h3>Proxmox</h3>
@@ -502,7 +698,7 @@
                     <span class="tech-tag">VM</span>
                     <span class="tech-tag">Container</span>
                 </div>
-                <a href="https://drive.google.com/file/d/1IpPsECnXvaKrGGz6YwkGWevhb7Dpnns6/view?usp=sharing" target="_blank" class="report-btn">📄 Voir le rapport</a>
+                <a href="https://drive.google.com/file/d/1IpPsECnXvaKrGGz6YwkGWevhb7Dpnns6/view?usp=sharing" target="_blank" class="report-btn">Voir le rapport</a>
             </div>
             <div class="project-card">
                 <h3>Déploiement - WDS</h3>
@@ -512,7 +708,23 @@
                     <span class="tech-tag">WDS</span>
                     <span class="tech-tag">PXE</span>
                 </div>
-                <a href="https://drive.google.com/file/d/13zFwNYMLK2tt8attuoujzOkDhPXe6xbN/view?usp=sharing" target="_blank" class="report-btn">📄 Voir le rapport</a>
+                <a href="https://drive.google.com/file/d/13zFwNYMLK2tt8attuoujzOkDhPXe6xbN/view?usp=sharing" target="_blank" class="report-btn">Voir le rapport</a>
+            </div>
+        </div>
+    </section>
+
+<!-- CV Section -->
+    <section id="cv">
+        <h2>Curriculum Vitae</h2>
+        <div class="cv-content">
+            <p>Vous pouvez consulter ou télécharger mon CV en cliquant sur les boutons ci-dessous.</p>
+            <div class="cv-buttons">
+                <a href="https://drive.google.com/file/d/1YgXuxB5G9wYl1iMAalVOm0Tu4Gz0fYsl/view?usp=sharing" target="_blank" class="cv-btn view-btn">
+                    👁️ Consulter le CV
+                </a>
+                <a href="https://drive.google.com/uc?export=download&id=1YgXuxB5G9wYl1iMAalVOm0Tu4Gz0fYsl" download class="cv-btn download-btn">
+                    📥 Télécharger le CV
+                </a>
             </div>
         </div>
     </section>
@@ -521,7 +733,7 @@
     <section id="contact">
         <h2>Contact</h2>
         <div class="contact-content">
-            <p>Intéressé par mon profil ? N'hésitez pas à me contacter pour échanger sur des opportunités de stage, d'alternance ou simplement pour discuter tech !</p>
+            <p>Intéressé par mon profil ? N'hésitez pas à me contacter pour échanger sur des opportunités de stage, d'alternance ou simplement pour discuter !</p>
             <div class="contact-links">
                 <a href="mailto:quentin.charron.pro@gmail.com" class="contact-link">
                     📧 Email
@@ -538,7 +750,7 @@
 
     <!-- Footer -->
     <footer>
-        <p>&copy; Claude a codé, j'ai adapté, la musique a supervisé 🎵🤖 </p>
+        <p>&copy; 2026 Quentin Charron • Tous droits réservés</p>
     </footer>
 
     <script>
@@ -581,7 +793,7 @@
             });
         }, observerOptions);
 
-        document.querySelectorAll('.skill-category, .project-card').forEach(el => {
+        document.querySelectorAll('.skill-category, .project-card, .certification-card').forEach(el => {
             el.style.opacity = '0';
             el.style.transform = 'translateY(20px)';
             el.style.transition = 'all 0.6s ease';
