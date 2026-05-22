@@ -695,6 +695,110 @@
             font-style: italic;
         }
 
+        /* Formation / Timeline Section */
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+            padding-left: 50px;
+        }
+
+        /* Ligne verticale */
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 20px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--primary), transparent);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 3rem;
+            padding-left: 30px;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: -30px;
+            top: 5px;
+            width: 20px;
+            height: 20px;
+            background-color: var(--primary);
+            border: 3px solid var(--secondary);
+            border-radius: 50%;
+            box-shadow: 0 0 20px var(--shadow);
+            z-index: 1;
+        }
+
+        .timeline-content {
+            background-color: var(--dark);
+            padding: 2rem;
+            border-radius: 10px;
+            border-left: 4px solid var(--primary);
+            transition: all 0.3s;
+        }
+
+        .timeline-content:hover {
+            transform: translateX(10px);
+            box-shadow: 0 10px 30px var(--shadow);
+        }
+
+        .timeline-date {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            background-color: var(--primary);
+            color: var(--secondary);
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .timeline-content h3 {
+            color: var(--white);
+            margin-bottom: 0.5rem;
+            font-size: 1.4rem;
+        }
+
+        .timeline-school {
+            color: var(--primary);
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-description {
+            color: var(--light);
+            line-height: 1.6;
+        }
+
+        /* Responsive Timeline */
+        @media (max-width: 768px) {
+            .timeline {
+                padding-left: 30px;
+            }
+
+            .timeline::before {
+                left: 10px;
+            }
+
+            .timeline-item {
+                padding-left: 20px;
+            }
+
+            .timeline-dot {
+                left: -20px;
+                width: 15px;
+                height: 15px;
+            }
+
+            .timeline-content {
+                padding: 1.5rem;
+            }
+        }
+
     </style>
 
 </head>
@@ -704,18 +808,13 @@
         <ul>
             <li><a href="#accueil">Accueil</a></li>
             <li><a href="#apropos">À propos</a></li>
+            <li><a href="#formation">Formation</a></li>
             <li><a href="#competences">Compétences</a></li>
             <li><a href="#certifications">Certifications</a></li>
             <li><a href="#projets">Projets</a></li>
             <li><a href="#cv">CV</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
-        <!--
-        <div class="social-links">
-            <a href="https://linkedin.com/in/..." target="_blank">💼</a>
-            <a href="https://github.com/QC31" target="_blank">💻</a>
-        </div>
-    -->
     </nav>
 
     <!-- Hero Section -->
@@ -750,6 +849,58 @@
                     <li>Ponctuel</li>
                 </ul>
             </div>
+        </div>
+    </section>
+
+    <!-- Formation Section -->
+    <section id="formation">
+        <h2>Parcours</h2>
+        <div class="timeline">
+            
+            <!-- Item Timeline -->
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <div class="timeline-date">2024 - 2025</div>
+                    <h3>Bachelor CSI</h3>
+                    <p class="timeline-school">ORT Toulouse</p>
+                    <p class="timeline-description">Concepteur Systèmes d'Informations</p>
+                </div>
+            </div>
+
+            <!-- Item Timeline -->
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <div class="timeline-date">2022 - 2024</div>
+                    <h3>BTS SIO - Option SISR</h3>
+                    <p class="timeline-school">Lycée Henri Matisse</p>
+                    <p class="timeline-description">Service Numériques aux Organisations - Solutions d'Infrastructure, Systèmes et Réseaux</p>
+                </div>
+            </div>
+
+            <!-- Item Timeline -->
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <div class="timeline-date">2022 - 2023</div>
+                    <h3>MC - SNO</h3>
+                    <p class="timeline-school">Lycée polyvalent Raymond Naves</p>
+                    <p class="timeline-description">Services Numériques aux Organisations</p>
+                </div>
+            </div>
+
+            <!-- Item Timeline -->
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <div class="timeline-date">2018 - 2021</div>
+                    <h3>Baccalauréat - MEI</h3>
+                    <p class="timeline-school">Lycée professionnel Eugène Montel</p>
+                    <p class="timeline-description">Maintenance des équipements industriels</p>
+                </div>
+            </div>
+
         </div>
     </section>
 
@@ -1039,7 +1190,7 @@
             });
         }, observerOptions);
 
-        document.querySelectorAll('.skill-category, .project-card, .certification-card').forEach(el => {
+        document.querySelectorAll('.skill-category, .project-card, .certification-card, .timeline-item').forEach(el => {
             el.style.opacity = '0';
             el.style.transform = 'translateY(20px)';
             el.style.transition = 'all 0.6s ease';
