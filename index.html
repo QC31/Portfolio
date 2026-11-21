@@ -144,6 +144,8 @@
         .about-text p {
             color: var(--light);
             margin-bottom: 1rem;
+            text-align: justify;
+            text-justify: inter-word;
         }
 
         .about-highlights {
@@ -233,6 +235,8 @@
         .project-card p {
             color: var(--light);
             margin-bottom: 1rem;
+            text-align: justify;
+            text-justify: inter-word;
         }
 
         .project-card .tech-tags {
@@ -916,13 +920,15 @@
         <h2 data-i18n="about_title">À propos</h2>
         <div class="about-content">
             <div class="about-text">
-                <p data-i18n="about_p1">🎓 Diplômé du Bachelor CSI (Concepteur Systèmes d'Informations) à l'ORT Toulouse, passionné par l'informatique depuis toujours. Mes domaines de prédilection : les réseaux, les systèmes et la cybersécurité.</p>
-                <p data-i18n="about_p2">Curieux de nature, j'aime comprendre comment les choses fonctionnent et trouver des solutions.</p>
+                <p data-i18n="about_p1"> Jeune professionnel en début de carrière dans le domaine de l'informatique, je m'intéresse particulièrement aux <strong> infrastructures systèmes et réseaux. </strong> ainsi qu'à la <strong> cybersécurité. </strong> </p>
+                <p data-i18n="about_p2"> Passionné par les nouvelles technologies et le fonctionnement des environnements informatiques, j'aime comprendre, concevoir, administrer et sécuriser les systèmes qui composent les infrastructures informatiques d'aujourd'hui.</p>
+                <p data-i18n="about_p3"> Mon parcours me permet de développer progressivement mes compétences dans des domaines tels que l'administration systèmes et réseaux, la gestion des infrastructures, la virtualisation, la supervision et la sécurité informatique.</p>
+                <p data-i18n="about_p4"> Curieux, rigoureux et motivé, j'accorde une importance particulière à l'apprentissage continu, à la veille technologique et à la mise en pratique de mes connaissances à travers différents projets et expérimentations. </p>
+                <p data-i18n="about_p5"> Je considère chaque défi technique comme une opportunité d'apprendre, de progresser et de développer tant sur le plan personnel que professionnel.</p>
                 <!--
-                <p data-i18n="about_p3">🔍 Statut : Recherche active d'emploi</p>
-                <p data-i18n="about_p4">📅 Disponible : Immédiatement</p>
+                <p data-i18n="about_p6">🔍 Statut : Recherche active d'emploi</p>
+                <p data-i18n="about_p7">📅 Disponible : Immédiatement</p>
                 -->
-                <p data-i18n="about_p5">En dehors des écrans, vous me trouverez probablement à la salle de Crossfit ou casque sur les oreilles.</p>
             </div>
             <div class="about-highlights">
                 <h3 style="color: var(--primary); margin-bottom: 1rem;" data-i18n="about_highlights">Points forts</h3>
@@ -933,6 +939,10 @@
                     <li data-i18n="highlight_4">Rigoureux</li>
                     <li data-i18n="highlight_5">Patient</li>
                     <li data-i18n="highlight_6">Ponctuel</li>
+                    <li data-i18n="highlight_7">Sang-froid</li>
+                    <li data-i18n="highlight_8">Fiabilité</li>
+                    <li data-i18n="highlight_9">Attentif</li>
+                    <li data-i18n="highlight_10">Lucide</li>
                 </ul>
             </div>
         </div>
@@ -1241,7 +1251,7 @@
             </a>
         </div>
         <br>
-        <p data-i18n="footer_copy">© 2026 Quentin Charron • Tous droits réservés</p>
+        <p data-i18n="footer_copy">© 2027 Quentin Charron • Tous droits réservés</p>
     </footer>
 
     <script>
@@ -1326,11 +1336,13 @@
 
         // À propos
         about_title:      "À propos",
-        about_p1:         "🎓 Diplômé du Bachelor CSI (Concepteur Systèmes d'Informations) à l'ORT Toulouse, passionné par l'informatique depuis toujours. Mes domaines de prédilection : les réseaux, les systèmes et la cybersécurité.",
-        about_p2:         "Curieux de nature, j'aime comprendre comment les choses fonctionnent et trouver des solutions.",
-        about_p3:         "🔍 Statut : Recherche active d'emploi",
-        about_p4:         "📅 Disponible : Immédiatement",
-        about_p5:         "En dehors des écrans, vous me trouverez probablement à la salle de Crossfit ou casque sur les oreilles.",
+        about_p1:         "Jeune professionnel en début de carrière dans le domaine de l'informatique, je m'intéresse particulièrement aux infrastructures systèmes et réseaux ainsi qu'à la cybersécurité.",
+        about_p2:         "Passionné par les nouvelles technologies et le fonctionnement des environnements informatiques, j'aime comprendre, concevoir, administrer et sécuriser les systèmes qui composent les infrastructures informatiques d'aujourd'hui.",
+        about_p3:         "Mon parcours me permet de développer progressivement mes compétences dans des domaines tels que l'administration systèmes et réseaux, la gestion des infrastructures, la virtualisation, la supervision et la sécurité informatique.",
+        about_p4:         "Curieux, rigoureux et motivé, j'accorde une importance particulière à l'apprentissage continu, à la veille technologique et à la mise en pratique de mes connaissances à travers différents projets et expérimentations.",
+        about_p5:         "Je considère chaque défi technique comme une opportunité d'apprendre, de progresser et de développer mon expertise.",
+        about_p6:         "🔍 Statut : Recherche active d'emploi",
+        about_p7:         "📅 Disponible : Immédiatement",
         about_highlights: "Points forts",
         highlight_1:      "Autonome",
         highlight_2:      "Autodidacte",
@@ -1448,11 +1460,13 @@
 
         // About
         about_title:      "About",
-        about_p1:         "🎓 Graduate of the Bachelor CSI (Information Systems Designer) at ORT Toulouse, passionate about IT since day one. My areas of expertise: networks, systems and cybersecurity.",
-        about_p2:         "Naturally curious, I enjoy understanding how things work and finding solutions.",
-        about_p3:         "🔍 Status: Actively looking for a job",
-        about_p4:         "📅 Available: Immediately",
-        about_p5:         "Outside of screens, you'll probably find me at the Crossfit gym or with headphones on.",
+        about_p1:         "As a young professional starting out in the IT field, I am particularly interested in system and network infrastructures as well as cybersecurity.",
+        about_p2:         "Passionate about new technologies and the functioning of IT environments, I like to understanding, designing, administering and securing systems that make up today’s IT infrastructures.",
+        about_p3:         "My formation allows me to gradually develop my skills in areas such as systems and network administration, infrastructure management, virtualization, supervision, and IT security.",
+        about_p4:         "Curious, rigorous and motivated, I place particular importance on continuous learning, technological monitoring and the application of my knowledge through various projects and experiments.",
+        about_p5:         "I consider every technical challenge like an opportunity for learning, progressing and develop both professionally and personally.",
+        about_p6:         "🔍 Status: Actively looking for a job",
+        about_p7:         "📅 Available: Immediately",
         about_highlights: "Strengths",
         highlight_1:      "Autonomous",
         highlight_2:      "Self-taught",
@@ -1460,6 +1474,10 @@
         highlight_4:      "Rigorous",
         highlight_5:      "Patient",
         highlight_6:      "Punctual",
+        highlight_7:      "Composure",
+        highlight_8:      "Reliability",
+        highlight_9:      "Attentive",
+        highlight_10:     "Lucid",
 
         // Education
         formation_title:  "Education",
@@ -1483,7 +1501,7 @@
         formation_3_btn:  "🎓 View diploma",
         // Bac
         formation_4_date: "2018 - 2021",
-        formation_4_name: "Baccalaureate - MEI",
+        formation_4_name: "Baccalaureate - IEM",
         formation_4_school: "Lycée professionnel Eugène Montel",
         formation_4_desc: "Industrial Equipment Maintenance",
         formation_4_btn:  "🎓 View diploma",
